@@ -91,6 +91,7 @@ void SetMotorSpeed(uint8_t index, int32_t speed);
 
 void SetMotorZero(uint8_t index);
 void SetPTZZero();
+void SetDefaultParam(uint8_t index);
 
 int16_t ptz_angle_offset;
 int16_t ptz_encoder_offset;

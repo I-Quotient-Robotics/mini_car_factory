@@ -154,19 +154,25 @@ int main(void)
   HAL_Delay(2000);
   LEDUnset(10);
 
-  struct MotorPID motor_pid;
-  motor_pid.pos_p = 10;
-  motor_pid.pos_i = 10;
-  motor_pid.speed_p = 10;
-  motor_pid.speed_i = 10;
-  motor_pid.effort_p = 10;
-  motor_pid.effort_i = 10;
+//  struct MotorPID motor_pid;
+//  motor_pid.pos_p = 100;
+//  motor_pid.pos_i = 100;
+//  motor_pid.speed_p = 80;
+//  motor_pid.speed_i = 80;
+//  motor_pid.effort_p = 30;
+//  motor_pid.effort_i = 30;
+//
+//  MotorSetPID(MOTOR_FL, motor_pid);
+//  MotorSetPID(MOTOR_FR, motor_pid);
+//  MotorSetPID(MOTOR_BR, motor_pid);
+//  MotorSetPID(MOTOR_BL, motor_pid);
+//  MotorSetPID(MOTOR_PTZ, motor_pid);
 
-  MotorSetPID(MOTOR_FL, motor_pid);
-  MotorSetPID(MOTOR_FR, motor_pid);
-  MotorSetPID(MOTOR_BR, motor_pid);
-  MotorSetPID(MOTOR_BL, motor_pid);
-  MotorSetPID(MOTOR_PTZ, motor_pid);
+  SetDefaultParam(MOTOR_FL);
+  SetDefaultParam(MOTOR_FR);
+  SetDefaultParam(MOTOR_BR);
+  SetDefaultParam(MOTOR_BL);
+  SetDefaultParam(MOTOR_PTZ);
 
   SetMotorSpeed(MOTOR_PTZ, 18000);
   HAL_Delay(3000);

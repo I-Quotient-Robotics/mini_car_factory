@@ -284,6 +284,71 @@ void UpdateMotorPosition(uint8_t index) {
   motor_state[index].tick = HAL_GetTick();
 }
 
+void SetDefaultParam(uint8_t index) {
+	uint8_t data[60] = {0};
+
+	data[0] = MOTOR_CMD_HEADER;
+	data[1] = 0x15;
+	data[2] = index;
+	data[3] = 0x30;
+	data[4] = CheckSum(data, 4);
+	data[5] = 0x03;
+	data[6] = 0x00;
+	data[7] = 0x00;
+	data[8] = 0x50;
+	data[9] = 0x46;
+	data[10] = 0x00;
+	data[11] = 0x50;
+	data[12] = 0x00;
+	data[13] = 0x64;
+	data[14] = 0x64;
+	data[15] = 0x64;
+	data[16] = 0x00;
+	data[17] = 0x64;
+	data[18] = 0x64;
+	data[19] = 0x00;
+	data[20] = 0x28;
+	data[21] = 0x28;
+	data[22] = 0x00;
+	data[23] = 0xD0;
+	data[24] = 0x07;
+	data[25] = 0x00;
+	data[26] = 0x00;
+	data[27] = 0x00;
+	data[28] = 0x00;
+	data[29] = 0xC0;
+	data[30] = 0x5C;
+	data[31] = 0x15;
+	data[32] = 0x00;
+	data[33] = 0xFF;
+	data[34] = 0xFF;
+	data[35] = 0xFF;
+	data[36] = 0xFF;
+	data[37] = 0x00;
+	data[38] = 0x00;
+	data[39] = 0x00;
+	data[40] = 0x00;
+	data[41] = 0x00;
+	data[42] = 0x00;
+	data[43] = 0x00;
+	data[44] = 0x00;
+	data[45] = 0x78;
+	data[46] = 0x56;
+	data[47] = 0xAA;
+	data[48] = 0x55;
+	data[49] = 0xFF;
+	data[50] = 0xFF;
+	data[51] = 0xFF;
+	data[52] = 0xFF;
+	data[53] = CheckSum(data+5, 48);
+
+	HAL_UART_Transmit(&huart3, data, 54, TX_TIMEOUT);
+	HAL_UART_Receive(&huart3, data, 5, RX_TIMEOUT);
+
+//	HAL_Delay(100);
+}
+
+
 void UpdatePTZPosition() {
   uint8_t data[20] = {0};
   uint8_t rxdata[20] = {0};
