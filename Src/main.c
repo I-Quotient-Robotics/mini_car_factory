@@ -138,7 +138,7 @@ int main(void)
   // MX_TIM3_Init();
 
   /* USER CODE BEGIN 2 */
-
+  // power on
   HAL_GPIO_WritePin(SOUND_EN_GPIO_Port, SOUND_EN_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(POWER_EN_GPIO_Port, POWER_EN_Pin, GPIO_PIN_SET);
   HAL_Delay(1000);
@@ -154,36 +154,26 @@ int main(void)
   HAL_Delay(2000);
   LEDUnset(10);
 
-//  struct MotorPID motor_pid;
-//  motor_pid.pos_p = 100;
-//  motor_pid.pos_i = 100;
-//  motor_pid.speed_p = 80;
-//  motor_pid.speed_i = 80;
-//  motor_pid.effort_p = 30;
-//  motor_pid.effort_i = 30;
-//
-//  MotorSetPID(MOTOR_FL, motor_pid);
-//  MotorSetPID(MOTOR_FR, motor_pid);
-//  MotorSetPID(MOTOR_BR, motor_pid);
-//  MotorSetPID(MOTOR_BL, motor_pid);
-//  MotorSetPID(MOTOR_PTZ, motor_pid);
-
+  // set motor default parameters
   SetDefaultParam(MOTOR_FL);
   SetDefaultParam(MOTOR_FR);
   SetDefaultParam(MOTOR_BR);
   SetDefaultParam(MOTOR_BL);
   SetDefaultParam(MOTOR_PTZ);
 
+  // set PTZ motor zero position
   SetMotorSpeed(MOTOR_PTZ, 18000);
   HAL_Delay(3000);
   SetPTZZero();
   HAL_Delay(1000);
 
+  // restart motor by power cycle
   HAL_GPIO_WritePin(POWER_EN_GPIO_Port, POWER_EN_Pin, GPIO_PIN_RESET);
   HAL_Delay(1000);
   HAL_GPIO_WritePin(POWER_EN_GPIO_Port, POWER_EN_Pin, GPIO_PIN_SET);
   HAL_Delay(1000);
 
+  // test
   MotorShake();
   SetPTZPositionRad(0);
   LEDSet(10);

@@ -133,7 +133,7 @@ struct MotorPID MotorGetPID(uint8_t index) {
 	motor_pid.effort_p = data[9];
 	motor_pid.effort_i = data[10];
 
-	printf("Motor %d PID: pos %d %d, speed %d %d, effort %d %d\r\n", motor_pid.pos_p, motor_pid.pos_i, motor_pid.speed_p, motor_pid.speed_i, motor_pid.effort_p, motor_pid.effort_i);
+	printf("Motor %d PID: pos %d %d, speed %d %d, effort %d %d\r\n", index, motor_pid.pos_p, motor_pid.pos_i, motor_pid.speed_p, motor_pid.speed_i, motor_pid.effort_p, motor_pid.effort_i);
   } else {
 	/* Unknown Motor Index */
 	printf("Unknown motor index");
@@ -160,7 +160,7 @@ void MotorSetPID(uint8_t index, struct MotorPID motor_pid) {
 	data[11] = CheckSum(data+5, 6);
 	HAL_UART_Transmit_DMA(&huart3, data, 12);
 	HAL_UART_Receive_DMA(&huart3, data, 12);
-	printf("Motor %d set PID: pos %d %d, speed %d %d, effort %d %d\r\n", motor_pid.pos_p, motor_pid.pos_i, motor_pid.speed_p, motor_pid.speed_i, motor_pid.effort_p, motor_pid.effort_i);
+	printf("Motor %d set PID: pos %d %d, speed %d %d, effort %d %d\r\n", index, motor_pid.pos_p, motor_pid.pos_i, motor_pid.speed_p, motor_pid.speed_i, motor_pid.effort_p, motor_pid.effort_i);
   } else {
 	/* Unknown Motor Index */
 	printf("Unknown motor index");

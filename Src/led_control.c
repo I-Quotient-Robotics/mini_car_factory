@@ -8,7 +8,7 @@
 extern IWDG_HandleTypeDef hiwdg;
 
 uint16_t LEDGetBytes() {
-  uint16_t temp;
+  uint16_t temp = 0;
 
   for(uint8_t i=0; i<10; i++) {
     temp += (2^i) * led_state[i].command;
@@ -181,7 +181,7 @@ void LEDHartbeatCheck(uint8_t mode) {
   uint16_t up_time = LED_HB_NORMAL;
   uint16_t period = LED_HB_NORMAL_PERIOD;
 
-  uint8_t value;
+  // uint8_t value;
   switch(mode) {
     case 0:
       up_time = LED_HB_NORMAL;
